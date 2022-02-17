@@ -6,7 +6,7 @@ class CreateTaskInput extends Component {
     value: '',
   };
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       value: event.target.value,
     });
@@ -14,6 +14,7 @@ class CreateTaskInput extends Component {
 
   handleTaskCreate = () => {
     if (!this.state.value) return null;
+
     this.props.onCreate(this.state.value);
     this.setState({
       value: '',
@@ -22,14 +23,17 @@ class CreateTaskInput extends Component {
 
   render() {
     return (
-      <div className="create-task">
+      <div className='create-task'>
         <input
-          type="text"
+          type='text'
           value={this.state.value}
-          className="create-task__input"
+          className='create-task__input'
           onChange={this.handleChange}
         />
-        <button className="btn create-task__btn" onClick={this.handleTaskCreate}>
+        <button
+          className='btn create-task__btn'
+          onClick={this.handleTaskCreate}
+        >
           Create
         </button>
       </div>
