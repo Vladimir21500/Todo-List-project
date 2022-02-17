@@ -5,7 +5,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Todo List Project with React
 
-## [Site link](https://adoring-swartz-6a7a96.netlify.app/)
+## [Site link](https://stoic-khorana-292329.netlify.app/)
 
 ## Available Scripts
 
