@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Task from './Task.jsx';
 import PropTypes from 'prop-types';
 import CreateTaskInput from './CreateTaskInput.jsx';
@@ -6,30 +6,33 @@ import * as tasksActions from '../tasks.actions';
 import { sortedTaskListSelector } from '../tasks.selectors';
 import { connect } from 'react-redux';
 
-class TasksList extends Component {
-  componentDidMount() {
-    this.props.getTasksList();
-  }
+const TasksList = ({
+  tasks,
+  getTasksList,
+  createTask,
+  updateTask,
+  deleteTask,
+}) => {
+  useEffect(() => {
+    getTasksList();
+  }, []);
 
-  render() {
-    const { tasks } = this.props;
-    return (
-      <div className='todo-list'>
-        <CreateTaskInput onCreate={this.props.createTask} />
-        <ul className='list'>
-          {tasks.map((task) => (
-            <Task
-              key={task.id}
-              {...task}
-              onChange={this.props.updateTask}
-              onDelete={this.props.deleteTask}
-            />
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div className='todo-list'>
+      <CreateTaskInput onCreate={createTask} />
+      <ul className='list'>
+        {tasks.map((task) => (
+          <Task
+            key={task.id}
+            {...task}
+            onChange={updateTask}
+            onDelete={deleteTask}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 TasksList.propTypes = {
   tasks: PropTypes.arrayOf(PropTypes.shape()),
